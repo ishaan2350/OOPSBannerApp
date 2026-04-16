@@ -1,7 +1,14 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class OOPSBannerApp {
 
-    public static String getO() {
-        return String.join("\n",
+    // Function to create pattern map
+    public static Map<Character, String[]> getPatterns() {
+
+        Map<Character, String[]> map = new HashMap<>();
+
+        map.put('O', new String[]{
                 "*****",
                 "*   *",
                 "*   *",
@@ -9,11 +16,9 @@ public class OOPSBannerApp {
                 "*   *",
                 "*   *",
                 "*****"
-        );
-    }
+        });
 
-    public static String getP() {
-        return String.join("\n",
+        map.put('P', new String[]{
                 "****",
                 "*   *",
                 "*   *",
@@ -21,11 +26,9 @@ public class OOPSBannerApp {
                 "*",
                 "*",
                 "*"
-        );
-    }
+        });
 
-    public static String getS() {
-        return String.join("\n",
+        map.put('S', new String[]{
                 "*****",
                 "*",
                 "*",
@@ -33,17 +36,29 @@ public class OOPSBannerApp {
                 "    *",
                 "    *",
                 "*****"
-        );
+        });
+
+        return map;
+    }
+
+    // Function to print banner
+    public static void printBanner(String text) {
+
+        Map<Character, String[]> patterns = getPatterns();
+
+        for (int i = 0; i < 7; i++) {
+            StringBuilder line = new StringBuilder();
+
+            for (char ch : text.toCharArray()) {
+                String[] pattern = patterns.get(ch);
+                line.append(pattern[i]).append("  ");
+            }
+
+            System.out.println(line);
+        }
     }
 
     public static void main(String[] args) {
-
-        String[] o = getO().split("\n");
-        String[] p = getP().split("\n");
-        String[] s = getS().split("\n");
-
-        for (int i = 0; i < 7; i++) {
-            System.out.println(o[i] + "  " + o[i] + "  " + p[i] + "  " + s[i]);
-        }
+        printBanner("OOPS");
     }
 }
